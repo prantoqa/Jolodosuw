@@ -39,7 +39,7 @@
       - লোকাল মাল্টিপ্লেয়ার (একাধিক মানুষ) হলে তলোয়ারবাজের ফলে কার্ডের নাম প্রকাশ না করা
     -->
     <script type="module">
-      const entryUrl = new URL("./assets/index-Er7WoFSS.js?v=4", import.meta.url);
+      const entryUrl = new URL("./assets/index-Er7WoFSS.js?v=6", import.meta.url);
       const res = await fetch(entryUrl);
       let code = await res.text();
 
@@ -57,11 +57,11 @@
         'h.length===0&&["guard","ship_worker","swordsman","sailor"].includes(r)?(f=zt({...f,resultMessage:`কোনো বৈধ লক্ষ্য নেই — ${(r==="swordsman"&&tm(f.players)&&!f.isOnline)?"এই কার্ড":Te[r]} এর কোনো প্রভাব নেই।`},`${i.name} ${(r==="swordsman"&&tm(f.players)&&!f.isOnline)?"একটি কার্ড":Te[r]} খেলেছেন — কোনো লক্ষ্য নেই।`),{...f,playStep:"show_result"})';
       if (code.includes(oldNoTarget)) code = code.replace(oldNoTarget, newNoTarget);
 
-      // 3) Local multiplayer privacy: hide compared card names in swordsman (Baron-like) result
+      // 3) Local multiplayer: reveal ONLY loser card in swordsman (Baron-like) result
       const oldZj =
         'function Zj(e,n){const i=e.players[e.currentPlayerIndex],r=e.players[n],l=i.hand[0],c=r.hand[0],f=l?Rt[l]:-1,h=c?Rt[c]:-1;let m=e.players,p="";return f>h?(m=ur(m,n),p=`${i.name} (${l?Te[l]:"?"}) বনাম ${r.name} (${c?Te[c]:"?"}) — ${r.name} হেরেছেন!`):h>f?(m=ur(m,e.currentPlayerIndex),p=`${i.name} (${l?Te[l]:"?"}) বনাম ${r.name} (${c?Te[c]:"?"}) — ${i.name} হেরেছেন!`):p=`${i.name} বনাম ${r.name} — টাই! কেউ বাদ পড়েননি।`,{...zt({...e,players:m,resultMessage:p},p),playStep:"show_result"}}';
       const newZj =
-        'function Zj(e,n){const i=e.players[e.currentPlayerIndex],r=e.players[n],l=i.hand[0],c=r.hand[0],f=l?Rt[l]:-1,h=c?Rt[c]:-1,_=tm(e.players)&&!e.isOnline;let m=e.players,p="";return f>h?(m=ur(m,n),p=_?`${i.name} বনাম ${r.name} — ${r.name} হেরেছেন!`:`${i.name} (${l?Te[l]:"?"}) বনাম ${r.name} (${c?Te[c]:"?"}) — ${r.name} হেরেছেন!`):h>f?(m=ur(m,e.currentPlayerIndex),p=_?`${i.name} বনাম ${r.name} — ${i.name} হেরেছেন!`:`${i.name} (${l?Te[l]:"?"}) বনাম ${r.name} (${c?Te[c]:"?"}) — ${i.name} হেরেছেন!`):p=`${i.name} বনাম ${r.name} — টাই! কেউ বাদ পড়েননি।`,{...zt({...e,players:m,resultMessage:p},p),playStep:"show_result"}}';
+        'function Zj(e,n){const i=e.players[e.currentPlayerIndex],r=e.players[n],l=i.hand[0],c=r.hand[0],f=l?Rt[l]:-1,h=c?Rt[c]:-1,_=tm(e.players)&&!e.isOnline;let m=e.players,p="";return f>h?(m=ur(m,n),p=_?`${i.name} বনাম ${r.name} — ${r.name} (${c?Te[c]:"?"}) হেরেছেন!`:`${i.name} (${l?Te[l]:"?"}) বনাম ${r.name} (${c?Te[c]:"?"}) — ${r.name} হেরেছেন!`):h>f?(m=ur(m,e.currentPlayerIndex),p=_?`${i.name} (${l?Te[l]:"?"}) বনাম ${r.name} — ${i.name} হেরেছেন!`:`${i.name} (${l?Te[l]:"?"}) বনাম ${r.name} (${c?Te[c]:"?"}) — ${i.name} হেরেছেন!`):p=`${i.name} বনাম ${r.name} — টাই! কেউ বাদ পড়েননি।`,{...zt({...e,players:m,resultMessage:p},p),playStep:"show_result"}}';
       if (code.includes(oldZj)) code = code.replace(oldZj, newZj);
 
       const blobUrl = URL.createObjectURL(new Blob([code], { type: "text/javascript" }));
@@ -71,7 +71,7 @@
         URL.revokeObjectURL(blobUrl);
       }
     </script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CVHLiWwd.css?v=4">
+    <link rel="stylesheet" crossorigin href="./assets/index-CVHLiWwd.css?v=6">
   </head>
   <body>
     <div id="root"></div>

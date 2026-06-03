@@ -1,5 +1,5 @@
 /* Simple offline cache for this static SPA (GitHub Pages friendly). */
-const CACHE_NAME = "jolodosshu-offline-v2";
+const CACHE_NAME = "jolodosshu-offline-v4";
 
 // We intentionally keep this list small; the runtime cache below will pick up
 // the rest of the assets as you play.
@@ -61,7 +61,8 @@ self.addEventListener("fetch", (event) => {
   // For JS/CSS/images: cache-first, then network (and store for next time)
   event.respondWith(
     (async () => {
-      const cached = await caches.match(request, { ignoreSearch: true });
+      // Do NOT ignore query params for static assets; our site uses ?v=... cache-busting.
+      const cached = await caches.match(request);
       if (cached) return cached;
       try {
         const network = await fetch(request);
