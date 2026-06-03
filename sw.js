@@ -1,5 +1,5 @@
 /* Simple offline cache for this static SPA (GitHub Pages friendly). */
-const CACHE_NAME = "jolodosshu-offline-v1";
+const CACHE_NAME = "jolodosshu-offline-v2";
 
 // We intentionally keep this list small; the runtime cache below will pick up
 // the rest of the assets as you play.
@@ -74,4 +74,3 @@ self.addEventListener("fetch", (event) => {
     })()
   );
 });
-
